@@ -1,0 +1,1 @@
+{"version":2,"defects":{"MailTest::testListMails":8},"times":{"MailTest::testCreateMail":0.514,"MailTest::testListMails":0.05}}
