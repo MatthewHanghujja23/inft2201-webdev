@@ -28,5 +28,19 @@ class Mail {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function updateMail($id, $subject, $body) {
+    $stmt = $this->pdo->prepare("UPDATE mail SET subject = ?, body = ? WHERE id = ?");
+    $stmt->execute([$subject, $body, $id]);
+    return $id;
+    }
 
+    public function deleteMail($id) {
+    $stmt = $this->pdo->prepare("DELETE FROM mail WHERE id = ?");
+    $stmt->execute([$id]);
 }
+
+
+    
+}
+

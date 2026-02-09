@@ -29,7 +29,7 @@ class MailTest extends TestCase {
         $this->assertEquals(1, $id);
     }
 
-    // Test 2: Retrieving all mail entries
+    // Test 2: List all mail entries
     public function testListMails() {
     $mail = new Mail($this->pdo);
 
@@ -42,13 +42,32 @@ class MailTest extends TestCase {
     $this->assertEquals("Hello", $allMails[0]['subject']);
     }
 
-    // Test 3: Getting mail by ID
+    // Test 3: Getting mail entry by ID
     public function testGetMailById() {
     $mail = new Mail($this->pdo);
     $id = $mail->createMail("Alice", "Hello");
     $mailData = $mail->getMailById($id);
     $this->assertEquals("Alice", $mailData['subject']);
-}
+    }
+
+    // Test 4: Updating mail entry by ID
+    public function testUpdateMail() {
+    $mail = new Mail($this->pdo);
+    $id = $mail->createMail("Old", "Body");
+    $mail->updateMail($id, "New", "Updated");
+    $updated = $mail->getMailById($id);
+    $this->assertEquals("New", $updated['subject']);
+    }
+
+    // Test 5: Deleting entry by ID
+    public function testDeleteMail() {
+    $mail = new Mail($this->pdo);
+    $id = $mail->createMail("Alice", "Hello");
+    $mail->deleteMail($id);
+    $this->assertFalse($mail->getMailById($id));
+    }
+
+
 
 
 }
