@@ -21,6 +21,12 @@ class Mail {
     public function getAllMails() {
     $stmt = $this->pdo->query("SELECT * FROM mail ORDER BY id ASC");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    }
+
+    public function getMailById($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM mail WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
 }
