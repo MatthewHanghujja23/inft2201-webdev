@@ -47,19 +47,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && is_numeric($id)) {
     }
 
     if ($mail->updateMail((int)$id, $data['subject'], $data['body'])) {
-        $page->item($mail->getMailById((int)$id));
+        $page->item($mail->getMailById((int)$id)); // 200 if okay.
     } else {
-        $page->notFound();   // 404 if ID does not exist
+        $page->notFound();   // 404 if ID does not exist.
     }
     exit;
 }
 
+
 // DELETE: Delete a mail by ID
-if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && is_numeric($id)) {
-    if ($mail->deleteMail((int)$id)) {
-        $page->item(["message" => "Deleted successfully"]);
+// DELETE: Delete a mail by ID
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && preg_match('#^/api/mail/(\d+)$#', $_SERVER['REQUEST_URI'], $matches)) {
+    $id = (int) $matches[1];
+
+    if ($mail->deleteMail($id)) {
+        $page->item(["message" => "Deleted successfully"]); // 200 OK
     } else {
-        $page->notFound();
+        $page->notFound(); // 404 Not Found
     }
     exit;
 }

@@ -1,1 +1,1 @@
-{"version":2,"defects":{"MailTest::testListMails":8},"times":{"MailTest::testCreateMail":0.853,"MailTest::testListMails":0.054,"MailTest::testGetMailById":0.009,"MailTest::testUpdateMail":0.008,"MailTest::testDeleteMail":0.068}}
+{"version":2,"defects":{"MailTest::testListMails":8},"times":{"MailTest::testCreateMail":2.091,"MailTest::testListMails":0.144,"MailTest::testGetMailById":0.008,"MailTest::testUpdateMail":0.009,"MailTest::testDeleteMail":0.11}}
